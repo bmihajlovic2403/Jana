@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Srećan rođendan, Jano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FBF3E7;
+    --cream-deep: #F5E8D3;
+    --ink: #3A2A1F;
+    --ink-soft: #6B5443;
+    --coral: #E47B5E;
+    --rose: #E8A7A0;
+    --sage: #9CB29B;
+    --gold: #D4A35A;
+    --shadow: rgba(58, 42, 31, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Nunito', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 15% 10%, rgba(232, 167, 160, 0.18), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(156, 178, 155, 0.18), transparent 45%),
+      var(--cream);
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #FFFCF6;
+    border-radius: 24px;
+    padding: 60px 56px 70px;
+    position: relative;
+    box-shadow:
+      0 1px 2px var(--shadow),
+      0 20px 60px -20px rgba(58, 42, 31, 0.18),
+      0 40px 100px -40px rgba(228, 123, 94, 0.15);
+    overflow: hidden;
+  }
+
+  /* subtle paper texture via repeating dots */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(58,42,31,0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .corner-deco {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    opacity: 0.55;
+  }
+  .corner-deco.tl { top: 18px; left: 18px; }
+  .corner-deco.br { bottom: 18px; right: 18px; transform: rotate(180deg); }
+
+  .eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--coral);
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .age-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 4px auto 18px;
+  }
+  .age-badge .line {
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(to right, transparent, var(--ink-soft), transparent);
+  }
+  .age-badge .label {
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1.05;
+    text-align: center;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  h1 .name {
+    font-style: italic;
+    color: var(--coral);
+    font-weight: 600;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--ink-soft);
+    margin-bottom: 44px;
+  }
+
+  /* Main photo polaroid */
+  .photo-hero {
+    display: block;
+    margin: 0 auto 50px;
+    width: 78%;
+    max-width: 460px;
+    background: #fff;
+    padding: 14px 14px 50px;
+    border-radius: 4px;
+    box-shadow:
+      0 2px 4px rgba(58,42,31,0.06),
+      0 12px 28px -8px rgba(58,42,31,0.25);
+    transform: rotate(-2deg);
+    position: relative;
+  }
+  .photo-hero::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 90px;
+    height: 22px;
+    background: rgba(228, 163, 90, 0.55);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+  }
+  .photo-hero .photo-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--cream-deep), #EAD9C0);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-hero .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-hero .photo-frame .placeholder {
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 20px;
+  }
+  .photo-hero .photo-frame .placeholder .icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+  }
+  .photo-hero .photo-frame .placeholder .text {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .photo-hero .caption {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--ink-soft);
+  }
+
+  /* Letter body */
+  .letter {
+    font-size: 17px;
+    color: var(--ink);
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .letter .salutation {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .letter p {
+    margin-bottom: 18px;
+  }
+
+  .letter .highlight {
+    color: var(--coral);
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .letter em.parenthetical {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.96em;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 40px auto;
+  }
+  .divider .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+  .divider .dot.mid { background: var(--sage); width: 8px; height: 8px; }
+  .divider .line {
+    height: 1px;
+    width: 80px;
+    background: var(--ink-soft);
+    opacity: 0.3;
+  }
+
+  /* PS section */
+  .ps-section {
+    background: linear-gradient(135deg, rgba(228,123,94,0.06), rgba(156,178,155,0.08));
+    border-radius: 16px;
+    padding: 36px 32px;
+    margin: 10px 0 32px;
+    position: relative;
+  }
+  .ps-section::before {
+    content: 'P.S.';
+    position: absolute;
+    top: -14px;
+    left: 28px;
+    background: var(--coral);
+    color: #fff;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+  .ps-content {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 560px) {
+    .ps-content { grid-template-columns: 1fr; }
+    .ps-photo { margin: 0 auto; }
+  }
+
+  .ps-text {
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  .ps-text .spanish {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--sage);
+    font-weight: 600;
+  }
+
+  .ps-photo {
+    width: 180px;
+    background: #fff;
+    padding: 10px 10px 36px;
+    border-radius: 3px;
+    box-shadow: 0 8px 20px -6px rgba(58,42,31,0.25);
+    transform: rotate(3deg);
+    position: relative;
+  }
+  .ps-photo::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 50px;
+    height: 16px;
+    background: rgba(232, 167, 160, 0.6);
+    transform: rotate(40deg);
+    border-radius: 2px;
+  }
+  .ps-photo .frame {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(135deg, var(--cream-deep), #EAD9C0);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ps-photo .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ps-photo .frame .placeholder {
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 12px;
+  }
+  .ps-photo .frame .placeholder .icon { font-size: 24px; opacity: 0.5; }
+  .ps-photo .frame .placeholder .text {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    margin-top: 6px;
+  }
+  .ps-photo .caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+
+  /* Signature */
+  .signature {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px dashed rgba(58,42,31,0.15);
+  }
+  .signature .closing {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .signature .names {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--coral);
+  }
+  .signature .heart {
+    color: var(--coral);
+    font-size: 24px;
+    display: inline-block;
+    margin-left: 4px;
+    animation: heartbeat 1.8s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+  }
+
+  /* Floating decorative elements */
+  .floater {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 44px 24px 50px; border-radius: 20px; }
+    body { padding: 20px 12px 60px; }
+    .letter { font-size: 16px; }
+    .photo-hero { width: 90%; }
+    .corner-deco { width: 60px; height: 60px; }
+  }
+
+  /* Instructions banner (for the user before sending) */
+  .instructions {
+    max-width: 720px;
+    margin: 0 auto 24px;
+    background: #FFF7E6;
+    border: 1px dashed var(--gold);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .instructions strong { color: var(--ink); }
+  .instructions code {
+    background: rgba(212, 163, 90, 0.15);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  @media print {
+    .instructions { display: none; }
+    body { background: white; padding: 0; }
+    .card { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- corner decorations -->
+  <svg class="corner-deco tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <path d="M10 10 Q 30 5, 50 15 T 90 20" stroke="#E47B5E" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="20" cy="25" r="2" fill="#D4A35A"/>
+    <circle cx="40" cy="12" r="1.5" fill="#9CB29B"/>
+    <path d="M15 40 L 18 37 L 21 40 L 18 43 Z" fill="#E8A7A0"/>
+    <path d="M55 35 Q 60 30, 65 35 Q 60 40, 55 35" fill="#9CB29B" opacity="0.5"/>
+  </svg>
+
+  <svg class="corner-deco br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <path d="M10 10 Q 30 5, 50 15 T 90 20" stroke="#E47B5E" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="20" cy="25" r="2" fill="#D4A35A"/>
+    <circle cx="40" cy="12" r="1.5" fill="#9CB29B"/>
+    <path d="M15 40 L 18 37 L 21 40 L 18 43 Z" fill="#E8A7A0"/>
+    <path d="M55 35 Q 60 30, 65 35 Q 60 40, 55 35" fill="#9CB29B" opacity="0.5"/>
+  </svg>
+
+  <p class="eyebrow">~ za našu malu zvezdicu ~</p>
+
+  <div class="age-badge">
+    <span class="line"></span>
+    <span class="label">Srećan rođendan</span>
+    <span class="line"></span>
+  </div>
+
+  <h1>Draga <span class="name">Jano</span></h1>
+  <p class="subtitle">naša tiha, naša divna</p>
+
+  <!-- HERO PHOTO -->
+  <div class="photo-hero">
+    <div class="photo-frame">
+      <!-- UBACI prvu sliku (Jana u sredini) -->
+      <img src="Slika1.jpg" alt="Jana" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%;">
+        <div class="icon">📷</div>
+        <div class="text">ovde ide slika<br>gde je Jana u sredini</div>
+      </div>
+    </div>
+    <div class="caption">~ naša Jana ~</div>
+  </div>
+
+  <!-- LETTER -->
+  <div class="letter">
+    <p class="salutation">Draga Jano,</p>
+
+    <p>
+      U naš život si došla <span class="highlight">tiho, neprimetno</span> i bez velike pompe
+      <em class="parenthetical">(što mi najbolje razumemo — i mi smo druga deca u svojim porodicama)</em>.
+      To ne znači da u životu nećeš biti primećena i uspešna.
+    </p>
+
+    <p>
+      Želimo ti da u toj tvojoj maloj glavici prvo raste <span class="highlight">samopouzdanje</span>
+      i vera da je sve moguće. Svaki mali uspeh — a prohodala si pre nego što ti je bilo godinu dana —
+      gledaj pozitivno i budi ponosna. A svaki neuspeh gledaj kao lekciju i priliku da naučiš nešto novo.
+    </p>
+
+    <p>
+      Srećan ti rođendan, i puno zdravlja, sreće i ljubavi ti žele tvoji ujka i ujna.
+      Kod nas uvek možeš da nađeš utočište — kad ti bude potreban mir,
+      ili kad te mama i tata budu iznervirali. 😊
+    </p>
+  </div>
+
+  <div class="divider">
+    <span class="line"></span>
+    <span class="dot"></span>
+    <span class="dot mid"></span>
+    <span class="dot"></span>
+    <span class="line"></span>
+  </div>
+
+  <!-- PS SECTION -->
+  <div class="ps-section">
+    <div class="ps-content">
+      <div class="ps-text">
+        Ako se ikada budeš pitala zašto znaš <span class="spanish">španski</span> —
+        to je zato što sam ti ja pevao uspavanke na španskom dok si bila beba.
+        <br><br>
+        <em style="color: var(--ink-soft);">Dokaz, kao što vidiš, postoji →</em>
+      </div>
+      <div class="ps-photo">
+        <div class="frame">
+          <img src="Slika2.jpg" alt="Ujka peva Jani" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="placeholder" style="display:none; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%;">
+            <div class="icon">🎶</div>
+            <div class="text">slika gde<br>pevam Jani</div>
+          </div>
+        </div>
+        <div class="caption">~ buenas noches ~</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="signature">
+    <p class="closing">Ljube te i vole te</p>
+    <p class="names">
+      seka Tara, ujna Kaća i ujka Bojan
+      <span class="heart">♥</span>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
